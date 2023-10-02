@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - '8080:80'
+      - "443:443"
+    volumes:
+      - ./src:/var/www/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    environment:
+      - NGINX_HOST=holamundo.com
+      - NGINX_PORT=8080
+      
+  php-fpm:
+    image: php:8-fpm
+    volumes:
+      - ./src:/var/www/html  
